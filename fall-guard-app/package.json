@@ -1,0 +1,27 @@
+{
+  "name": "fall-guard-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ung dung phat hien te nga danh cho nguoi co nguy co - tich hop cam bien, GPS va Firebase",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "bundle": "esbuild src/app.ts --bundle --format=iife --target=es2019 --minify --legal-comments=none --outfile=www/app.js",
+    "build": "npm run typecheck && npm run bundle",
+    "watch": "esbuild src/app.ts --bundle --format=iife --target=es2019 --sourcemap --outfile=www/app.js --watch",
+    "serve": "npx --yes http-server www -p 5173 -c-1",
+    "sync": "npm run build && cap sync android",
+    "add:android": "cap add android",
+    "open:android": "cap open android",
+    "apk": "npm run sync && cd android && gradlew.bat assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/core": "^7.0.0",
+    "firebase": "^12.19.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.0.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.6.0"
+  }
+}
